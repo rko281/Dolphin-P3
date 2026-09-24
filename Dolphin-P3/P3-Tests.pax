@@ -1,0 +1,107 @@
+﻿| package |
+package := Package name: 'P3-Tests'.
+package paxVersion: 1;
+	basicComment: ''.
+
+package classNames
+	add: #P3ArrayValueParserTest;
+	add: #P3ClientTest;
+	add: #P3ConnectionPoolTest;
+	add: #P3FormattedStatementTest;
+	add: #P3IntegerVectorValueParserTest;
+	add: #P3ISO8601ParserTest;
+	add: #P3PBKDF2Test;
+	add: #P3PreparedStatementTest;
+	add: #P3SCRAMTest;
+	yourself.
+
+package methodNames
+	add: #P3Client -> #utcOffset;
+	yourself.
+
+package binaryGlobalNames: (Set new
+	yourself).
+
+package globalAliases: (Set new
+	yourself).
+
+package setPrerequisites: #(
+	'..\Core\Object Arts\Dolphin\Base\Dolphin'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
+	'..\Core\Object Arts\Dolphin\System\Random\Dolphin Random Stream'
+	'P3'
+	'..\Core\Contributions\svenc\STON\STON-Core'
+	'..\Core\Contributions\Camp Smalltalk\SUnit\SUnit').
+
+package!
+
+"Class Definitions"!
+
+TestCase subclass: #P3ArrayValueParserTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3ClientTest
+	instanceVariableNames: 'client'
+	classVariableNames: 'Url'
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3ConnectionPoolTest
+	instanceVariableNames: 'pool'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3FormattedStatementTest
+	instanceVariableNames: 'client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3IntegerVectorValueParserTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3ISO8601ParserTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3PBKDF2Test
+	instanceVariableNames: 'pbkdf2'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3PreparedStatementTest
+	instanceVariableNames: 'client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+TestCase subclass: #P3SCRAMTest
+	instanceVariableNames: 'scram'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+"Loose Methods"!
+
+!P3Client methodsFor!
+
+utcOffset
+
+	^(self query: 'select now() - (now() at time zone ''utc'');') data first first asDuration! !
+
+!P3Client categoriesForMethods!
+utcOffset!public! !
+!
+
+"End of package definition"!
+

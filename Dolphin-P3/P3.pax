@@ -1,0 +1,564 @@
+﻿| package |
+package := Package name: 'P3'.
+package paxVersion: 1;
+	basicComment: ''.
+
+package classNames
+	add: #P3ArrayValueParser;
+	add: #P3BitString;
+	add: #P3Box;
+	add: #P3CheckConstraint;
+	add: #P3Circle;
+	add: #P3Client;
+	add: #P3Connection;
+	add: #P3ConnectionClosedEvent;
+	add: #P3ConnectionEstablishedEvent;
+	add: #P3ConnectionPool;
+	add: #P3Constraint;
+	add: #P3Converter;
+	add: #P3Error;
+	add: #P3ErrorOccurredEvent;
+	add: #P3FixedBitString;
+	add: #P3ForeignKeyConstraint;
+	add: #P3FormattedStatement;
+	add: #P3GeometricObject;
+	add: #P3HMACSHA256;
+	add: #P3IntegerVectorValueParser;
+	add: #P3Interval;
+	add: #P3ISO8601Parser;
+	add: #P3Line;
+	add: #P3LineSegment;
+	add: #P3LogEvent;
+	add: #P3MessageBuffer;
+	add: #P3MessageBuilder;
+	add: #P3Notification;
+	add: #P3ParameterDescription;
+	add: #P3Path;
+	add: #P3PBKDF2;
+	add: #P3Point;
+	add: #P3Polygon;
+	add: #P3PreparedStatement;
+	add: #P3PrimaryKeyConstraint;
+	add: #P3QueryWrittenEvent;
+	add: #P3Result;
+	add: #P3ResultReadEvent;
+	add: #P3RetryConnectionEvent;
+	add: #P3RowFieldDescription;
+	add: #P3SCRAM;
+	add: #P3StatementBoundEvent;
+	add: #P3StatementPreparedEvent;
+	add: #P3UniqueConstraint;
+	add: #P3URL;
+	add: #P3ValuesArray;
+	yourself.
+
+package methodNames
+	add: #BCryptLibrary -> #p3bCryptHash:pbSecret:cbSecret:pbInput:cbInput:pbOutput:cbOutput:;
+	add: #BCryptLibrary -> #p3hash:algorithm:length:;
+	add: #ByteArray -> #p3PrintUsing:on:;
+	add: #Date -> #p3PrintUsing:on:;
+	add: #DateAndTime -> #p3PrintUsing:on:;
+	add: #DateAndTime -> #p3translateTo:;
+	add: #Object -> #p3PrintUsing:on:;
+	add: #PositionableStream -> #p3setFrom:to:;
+	add: #ReadStream -> #p3uint16;
+	add: #ReadStream -> #p3uint32;
+	add: #ScaledDecimal -> #p3PrintUsing:on:;
+	add: #SequenceableCollection -> #p3PrintUsing:on:;
+	add: #String -> #p3PrintUsing:on:;
+	add: #Time -> #p3PrintUsing:on:;
+	add: #TimeStamp -> #p3PrintUsing:on:;
+	add: #UndefinedObject -> #p3PrintUsing:on:;
+	add: 'Integer class' -> #p3readFromByteStream:length:;
+	yourself.
+
+package binaryGlobalNames: (Set new
+	yourself).
+
+package globalAliases: (Set new
+	yourself).
+
+package setPrerequisites: #(
+	'..\Core\Object Arts\Dolphin\Base\Dolphin'
+	'..\Core\Object Arts\Dolphin\System\Announcements\Dolphin Announcements'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
+	'..\Core\Object Arts\Dolphin\System\Random\Dolphin Random Stream'
+	'..\Core\Object Arts\Dolphin\Sockets\Dolphin Sockets'
+	'..\Core\Object Arts\Dolphin\DolphinSure\DolphinSure'
+	'..\Core\Contributions\svenc\STON\STON-Core'
+	'..\OpenSSL\TLS Sockets').
+
+package!
+
+"Class Definitions"!
+
+Object subclass: #P3ArrayValueParser
+	instanceVariableNames: 'stream converter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3BitString
+	instanceVariableNames: 'bits'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Client
+	instanceVariableNames: 'connection session settings properties converter message access url isLogging'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Connection
+	instanceVariableNames: 'socket readStream writeStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3ConnectionPool
+	instanceVariableNames: 'url configurator pool access'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Constraint
+	instanceVariableNames: 'constraintSchema constraintName tableSchema tableName isDeferrable initiallyDeferred enforced constraintColumns'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Converter
+	instanceVariableNames: 'map'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3FormattedStatement
+	instanceVariableNames: 'client source'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3GeometricObject
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3HMACSHA256
+	instanceVariableNames: 'key ipad epad'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3IntegerVectorValueParser
+	instanceVariableNames: 'stream converter'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Interval
+	instanceVariableNames: 'years months days hours minutes seconds'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3ISO8601Parser
+	instanceVariableNames: 'stream timestampClass'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3MessageBuffer
+	instanceVariableNames: 'tag payload size'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3MessageBuilder
+	instanceVariableNames: 'byteStream'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3ParameterDescription
+	instanceVariableNames: 'typeOid'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3PBKDF2
+	instanceVariableNames: 'password salt pseudoRandom iterations'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3PreparedStatement
+	instanceVariableNames: 'client name paramDescriptions fieldDescriptions source'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3Result
+	instanceVariableNames: 'results descriptions data source'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3RowFieldDescription
+	instanceVariableNames: 'fieldName tableOid attributeNumber typeOid typeSize typeModifier format'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3SCRAM
+	instanceVariableNames: 'user password salt hmac iteratedHash clientNounce serverNounce saltedPassword'
+	classVariableNames: 'Store'
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3URL
+	instanceVariableNames: 'string elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Object subclass: #P3ValuesArray
+	instanceVariableNames: 'array'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Announcement subclass: #P3LogEvent
+	instanceVariableNames: 'timestamp id session'
+	classVariableNames: 'IdCounter LogEventAnnouncer'
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3ConnectionClosedEvent
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3ConnectionEstablishedEvent
+	instanceVariableNames: 'settings properties'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3ErrorOccurredEvent
+	instanceVariableNames: 'exception'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3QueryWrittenEvent
+	instanceVariableNames: 'query'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3ResultReadEvent
+	instanceVariableNames: 'result duration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3RetryConnectionEvent
+	instanceVariableNames: 'remaining delay'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3StatementBoundEvent
+	instanceVariableNames: 'statement inputValues'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3LogEvent subclass: #P3StatementPreparedEvent
+	instanceVariableNames: 'statement query'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Error subclass: #P3Error
+	instanceVariableNames: 'info'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+Notification subclass: #P3Notification
+	instanceVariableNames: 'info'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3BitString subclass: #P3FixedBitString
+	instanceVariableNames: 'size'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3Constraint subclass: #P3CheckConstraint
+	instanceVariableNames: 'checkClause'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3Constraint subclass: #P3ForeignKeyConstraint
+	instanceVariableNames: 'foreignKeyTable foreignKeyColumns'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3Constraint subclass: #P3PrimaryKeyConstraint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3Constraint subclass: #P3UniqueConstraint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3Box
+	instanceVariableNames: 'upperRight lowerLeft'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3Circle
+	instanceVariableNames: 'center radius'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3Line
+	instanceVariableNames: 'a b c'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3LineSegment
+	instanceVariableNames: 'start stop'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3Point
+	instanceVariableNames: 'x y'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3GeometricObject subclass: #P3Polygon
+	instanceVariableNames: 'points'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+P3Polygon subclass: #P3Path
+	instanceVariableNames: 'open'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+
+"Loose Methods"!
+
+!BCryptLibrary methodsFor!
+
+p3bCryptHash: hAlgorithm pbSecret: pbSecret cbSecret: cbSecret pbInput: pbInput cbInput: cbInput pbOutput: pbOutput cbOutput: cbOutput
+	"Backport from Dolphin 8 for P3.
+	Invoke the BCryptHash() function of the module wrapped by the receiver.
+	Helpstring: Performs a single hash computation. This is a convenience function that wraps calls to BCryptCreateHash, BCryptHashData, BCryptFinishHash, and BCryptDestroyHash.
+
+		NTSTATUS __stdcall BCryptHash(
+			BCRYPT_ALG_HANDLE hAlgorithm,
+			UCHAR* pbSecret,
+			ULONG cbSecret,
+			UCHAR* pbInput,
+			ULONG cbInput,
+			UCHAR* pbOutput,
+			ULONG cbOutput);"
+
+	<stdcall: ntstatus BCryptHash handle byte* dword byte* dword byte* dword>
+	^self invalidCall: _failureCode!
+
+p3hash: aByteArray algorithm: aHandle length: anInteger
+	"Backport from Dolphin 8 for P3"
+	| hashBytes |
+	hashBytes := ByteArray newFixed: anInteger.
+	self
+		p3bCryptHash: aHandle
+		pbSecret: nil
+		cbSecret: 0
+		pbInput: aByteArray
+		cbInput: aByteArray size
+		pbOutput: hashBytes
+		cbOutput: anInteger.
+	^hashBytes! !
+
+!BCryptLibrary categoriesForMethods!
+p3bCryptHash:pbSecret:cbSecret:pbInput:cbInput:pbOutput:cbOutput:!public! !
+p3hash:algorithm:length:!public! !
+!
+
+!ByteArray methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printByteArray: self on: stream! !
+
+!ByteArray categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!Date methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printDate: self on: stream! !
+
+!Date categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!DateAndTime methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printDateAndTime: self on: stream!
+
+p3translateTo: anOffset
+	"Keep myself's representation and move it to another timezone offset.
+	Note that unlike #offset: this WILL change the absolute time in UTC
+
+	|t|
+	t := DateAndTime now.
+	t = (t offset: 2 hours).
+	t = (t translateTo: 2 hours).
+	"
+	^self dayMonthYearDo: [ :day :month :year|
+		self class
+			year: year
+			month: month
+			day: day
+			hour: self hour
+			minute: self minute
+			second: self second
+			offset: anOffset asDuration]! !
+
+!DateAndTime categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+p3translateTo:!*P3!public! !
+!
+
+!Integer class methodsFor!
+
+p3readFromByteStream: aStream length: anInteger
+
+	| neg value  |
+
+	neg := aStream peekFor: ##($- asciiValue).
+	value := 0.
+	(neg ifTrue: [anInteger - 1] ifFalse: [anInteger]) timesRepeat: [value := value * 10 + (aStream next - 48)].
+	
+	^neg 
+		ifTrue: [value negated] 
+		ifFalse: [value]! !
+
+!Integer class categoriesForMethods!
+p3readFromByteStream:length:!instance creation!public! !
+!
+
+!Object methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	This is the default/fallback implementation.	Check the implementors of #p3PrintUsing:on:"		delegate printObject: self on: stream! !
+
+!Object categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!PositionableStream methodsFor!
+
+p3setFrom: anInteger to: sizeInteger
+
+	position := anInteger - 1.
+	readLimit := sizeInteger! !
+
+!PositionableStream categoriesForMethods!
+p3setFrom:to:!initializing!public! !
+!
+
+!ReadStream methodsFor!
+
+p3uint16
+	"Answer the next unsigned, 16-bit integer from this (binary) stream."
+
+	| n |
+	n := self next.
+	n := (n bitShift: 8) + (self next).
+	^ n!
+
+p3uint32
+	"Answer the next unsigned, 16-bit integer from this (binary) stream."
+
+	| n |
+	n := self next.
+	n := (n bitShift: 24) + (self next bitShift: 16) + (self next bitShift: 8) + (self next).
+	^ n! !
+
+!ReadStream categoriesForMethods!
+p3uint16!accessing!public! !
+p3uint32!accessing!public! !
+!
+
+!ScaledDecimal methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printScaledDecimal: self on: stream! !
+
+!ScaledDecimal categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!SequenceableCollection methodsFor!
+
+p3PrintUsing: delegate on: aStream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printValuesArray: self on: aStream! !
+
+!SequenceableCollection categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!String methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printString: self on: stream! !
+
+!String categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!Time methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printTime: self on: stream! !
+
+!Time categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!TimeStamp methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printDateAndTime: self asDateAndTime on: stream! !
+
+!TimeStamp categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+!UndefinedObject methodsFor!
+
+p3PrintUsing: delegate on: stream	"Print me on stream via double dispatch on delegate.	Check the implementors of #p3PrintUsing:on:"	delegate printNullOn: stream! !
+
+!UndefinedObject categoriesForMethods!
+p3PrintUsing:on:!*P3!public! !
+!
+
+"End of package definition"!
+
